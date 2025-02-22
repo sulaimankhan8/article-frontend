@@ -18,7 +18,7 @@ export async function signupUser(clerkId: string, email: string, generaIds: numb
 }
 export const fetchUserArticles = async (clerkId: string) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/article/${clerkId}`, {
+    const response = await fetch(`https://article-backend-c6en.onrender.com/api/article/${clerkId}`, {
       method: "GET",
       credentials: "include", // Ensure cookies/auth headers are included
     });

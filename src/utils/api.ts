@@ -1,13 +1,13 @@
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function fetchGenres() {
-  const res = await fetch(`${API_BASE_URL}/genera`);
+  const res = await fetch(`${API_BASE_URL}/api/genera`);
   if (!res.ok) throw new Error("Failed to fetch genres");
   return res.json();
 }
 
 export async function signupUser(clerkId: string, email: string, generaIds: number[]) {
-  const res = await fetch(`${API_BASE_URL}/users/signup`, {
+  const res = await fetch(`${API_BASE_URL}/api/users/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ clerkId, email, generaIds }),
@@ -18,7 +18,7 @@ export async function signupUser(clerkId: string, email: string, generaIds: numb
 }
 export const fetchUserArticles = async (clerkId: string) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/article/${clerkId}`, {
+    const response = await fetch(`${API_BASE_URL}/api/article/${clerkId}`, {
       method: "GET",
       credentials: "include", // Ensure cookies/auth headers are included
     });

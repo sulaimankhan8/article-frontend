@@ -15,7 +15,6 @@ export default function SignupPage() {
   const { isSignedIn, user } = useUser();
   const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
-  
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -78,9 +77,8 @@ export default function SignupPage() {
       // Redirect to dashboard after fetching articles
       router.push("/dashboard");
     } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
+      const errMessage = (error as Error).message; // Type assertion
+      console.error("Signup error:", errMessage);
     }
   };
 

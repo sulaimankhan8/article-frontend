@@ -9,18 +9,13 @@ interface Genre {
   name: string;
 }
 
-interface Article {
-  title: string;
-  url: string;
-  source: string;
-  published_date: string;
-}
+
 
 export default function SignupPage() {
   const { isSignedIn, user } = useUser();
   const [genres, setGenres] = useState<Genre[]>([]);
   const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
-  const [articles, setArticles] = useState<Article[]>([]);
+  
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -50,17 +45,7 @@ export default function SignupPage() {
     );
   }, []);
 
-  // Fetch articles from external API
-  const fetchArticles = async () => {
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/article/fetch-api?query=latest`);
-      if (!response.ok) throw new Error("Failed to fetch articles");
-      const data = await response.json();
-      setArticles(data);
-    } catch (error) {
-      console.error("Error fetching articles:", error);
-    }
-  };
+
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -88,8 +73,7 @@ export default function SignupPage() {
         throw new Error(data.message || "Error during signup");
       }
 
-      // Fetch fresh articles after signup
-      await fetchArticles();
+     
 
       // Redirect to dashboard after fetching articles
       router.push("/dashboard");

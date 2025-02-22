@@ -8,6 +8,7 @@ interface Article {
   id: number;
   title: string;
   content: string;
+  url: string; 
 }
 
 export default function Dashboard() {
@@ -35,7 +36,7 @@ export default function Dashboard() {
         articles.map((article) => (
           <div key={article.id} className="mb-4">
             <a
-              href={article.url}
+              href={article.url  ?? "#" }
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:underline text-lg"
